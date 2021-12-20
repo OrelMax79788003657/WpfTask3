@@ -33,5 +33,18 @@ namespace WpfTask3
             textBox.FontFamily = new FontFamily(fontName);
             }
         }
+
+        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            int fontSize = int.Parse(((sender as ComboBox).SelectedItem as TextBlock).Text);
+            TextSelection text = textBox.Selection;
+            if (textBox != null)
+            {
+                text.ApplyPropertyValue(textBox.FontSizeProperty, fontSize);
+            }
+
+
+            
+        }
     }
 }

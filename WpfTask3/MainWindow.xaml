@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTask3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600">
+        Title="MainWindow" Height="450" Width="600" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -26,17 +26,17 @@
             </ToolBar>
             <ToolBar Margin="5" Padding="5">
                 <Button >
-                    <Image Height="24" Source="/B.png" Stretch="Fill" Width="24"/>
+                    <Image Height="24" Source="Data/B.png" Stretch="Fill" Width="24"/>
 
                 </Button>
                 <Separator/>
                 <Button>
-                    <Image Height="24" Source="/I.png" Stretch="Fill" Width="24"/>
+                    <Image Height="24" Source="Data/I.png" Stretch="Fill" Width="24"/>
 
                 </Button>
                 <Separator/>
                 <Button>
-                    <Image Height="24" Source="/U.png" Stretch="Fill" Width="24"/>
+                    <Image Height="24" Source="Data/U.png" Stretch="Fill" Width="24"/>
                 </Button>
                 <Separator/>
 

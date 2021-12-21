@@ -36,15 +36,43 @@ namespace WpfTask3
 
         private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            int fontSize = int.Parse(((sender as ComboBox).SelectedItem as TextBlock).Text);
-            TextSelection text = textBox.Selection;
+            double fontSize = double.Parse(((sender as ComboBox).SelectedItem as TextBlock).Text);
+            
             if (textBox != null)
             {
-                text.ApplyPropertyValue(textBox.FontSizeProperty, fontSize);
+                TextRange textRange = new TextRange(textBox.Selection.Start, textBox.Selection.End);
+                textRange.ApplyPropertyValue(TextElement.FontSizeProperty, fontSize);
+
             }
 
+        }
 
-            
+        private void Bold_text_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBox != null)
+            {
+                TextRange textRange = new TextRange(textBox.Selection.Start, textBox.Selection.End);
+                textRange.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Bold);
+            }
+        }
+
+       
+        private void Italic_text_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBox != null)
+            {
+                TextRange textRange = new TextRange(textBox.Selection.Start, textBox.Selection.End);
+                textRange.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Italic);
+            }
+        }
+
+        private void Underlined_text_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (textBox != null)
+            {
+                TextRange textRange = new TextRange(textBox.Selection.Start, textBox.Selection.End);
+                textRange.ApplyPropertyValue(Inline.TextDecorationsProperty, TextDecorations.Underline);
+            }
         }
     }
 }

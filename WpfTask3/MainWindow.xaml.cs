@@ -20,6 +20,9 @@ namespace WpfTask3
     /// </summary>
     public partial class MainWindow : Window
     {
+        int isBold = 0;
+        int isItalic = 0;
+        int isUnderline = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -40,38 +43,78 @@ namespace WpfTask3
             
             if (textBox != null)
             {
-                TextRange textRange = new TextRange(textBox.Selection.Start, textBox.Selection.End);
-                textRange.ApplyPropertyValue(TextElement.FontSizeProperty, fontSize);
+                textBox.FontSize = fontSize;
 
             }
 
         }
 
-        private void Bold_text_Click(object sender, RoutedEventArgs e)
+
+        private void Button_bold_text_Click(object sender, RoutedEventArgs e)
         {
             if (textBox != null)
             {
-                TextRange textRange = new TextRange(textBox.Selection.Start, textBox.Selection.End);
-                textRange.ApplyPropertyValue(TextElement.FontWeightProperty, FontWeights.Bold);
+                isBold += 1;
+                if (isBold == 1)
+                {
+                    textBox.FontWeight = FontWeights.Bold;
+                }
+                else if (isBold == 2)
+                {
+                    isBold = 0;
+                    textBox.FontWeight = FontWeights.Normal;
+                }
             }
         }
 
-       
-        private void Italic_text_Click(object sender, RoutedEventArgs e)
+        private void Button_italic_text_Click(object sender, RoutedEventArgs e)
         {
             if (textBox != null)
             {
-                TextRange textRange = new TextRange(textBox.Selection.Start, textBox.Selection.End);
-                textRange.ApplyPropertyValue(TextElement.FontStyleProperty, FontStyles.Italic);
+                isItalic += 1;
+                if (isItalic == 1)
+                {
+                    textBox.FontStyle = FontStyles.Italic;
+                }
+                else if (isItalic == 2)
+                {
+                    isItalic = 0;
+                    textBox.FontStyle = FontStyles.Normal;
+                }
             }
         }
 
-        private void Underlined_text_Click_1(object sender, RoutedEventArgs e)
+        private void Button_underlined_text_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (textBox != null)
+            {
+                isUnderline += 1;
+                if (isUnderline == 1)
+                {
+                    textBox.TextDecorations = TextDecorations.Underline;
+                }
+                else if (isUnderline == 2)
+                {
+                    isUnderline = 0;
+                    textBox.TextDecorations = null;
+                }
+            }
+        }
+
+        private void Radio_button_black_checked(object sender, RoutedEventArgs e)
         {
             if (textBox != null)
             {
-                TextRange textRange = new TextRange(textBox.Selection.Start, textBox.Selection.End);
-                textRange.ApplyPropertyValue(Inline.TextDecorationsProperty, TextDecorations.Underline);
+                textBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void Radio_button_red_checked(object sender, RoutedEventArgs e)
+        {
+            if (textBox != null)
+            {
+                textBox.Foreground = Brushes.Red;
             }
         }
     }

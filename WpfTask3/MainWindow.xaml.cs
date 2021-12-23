@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -116,6 +117,32 @@ namespace WpfTask3
             {
                 textBox.Foreground = Brushes.Red;
             }
+        }
+
+        private void itemOpen_clicked(object sender, RoutedEventArgs e)
+        {
+            if (textBox != null)
+            {
+                StreamReader sr = new StreamReader("document.txt");
+
+                textBox.Text = sr.ReadToEnd();
+                sr.Close();
+            }
+        }
+
+        private void itemSave_clicked(object sender, RoutedEventArgs e)
+        {
+            if (textBox != null)
+            {
+                StreamWriter sw = new StreamWriter("document.txt");
+                sw.Write(textBox.Text);
+                sw.Close();
+            }
+        }
+
+        private void itemClose_clicked(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

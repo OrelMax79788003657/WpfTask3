@@ -69,6 +69,9 @@ namespace WpfTask3
         }
 
         private void Button_italic_text_Click(object sender, RoutedEventArgs e)
+//            Чтобы не хранить дополнительные переменные, можно было сразу проверять текущее значение, например
+
+//if (textBox.FontStyle == FontStyles.Italic)
         {
             if (textBox != null)
             {
@@ -119,30 +122,20 @@ namespace WpfTask3
             }
         }
 
-        private void itemOpen_clicked(object sender, RoutedEventArgs e)
+        private void ExitExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            if (textBox != null)
-            {
-                StreamReader sr = new StreamReader("document.txt");
+            Application.Current.Shutdown();
 
-                textBox.Text = sr.ReadToEnd();
-                sr.Close();
-            }
         }
 
-        private void itemSave_clicked(object sender, RoutedEventArgs e)
+        private void OpenExecute(object sender, ExecutedRoutedEventArgs e)
         {
-            if (textBox != null)
-            {
-                StreamWriter sw = new StreamWriter("document.txt");
-                sw.Write(textBox.Text);
-                sw.Close();
-            }
+            MessageBox.Show("Документ открыт");
         }
 
-        private void itemClose_clicked(object sender, RoutedEventArgs e)
+        private void SaveExecute(object sender, ExecutedRoutedEventArgs e)
         {
-            this.Close();
+            MessageBox.Show("Документ coxpaнен");
         }
     }
 }

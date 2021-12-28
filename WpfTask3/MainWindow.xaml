@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:WpfTask3"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="600" ResizeMode="NoResize">
+    <Window.CommandBindings>
+        <CommandBinding Command="local:MyCommands.Exit" Executed="ExitExecuted"/>
+        <CommandBinding Command="Open" Executed="OpenExecute"/>
+        <CommandBinding Command="Save" Executed="SaveExecute"/>
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -15,13 +20,16 @@
         
         <Menu Margin="5px" Padding="5px" Grid.Row="0">
             <MenuItem Header="Файл">
-                <MenuItem Header="Открыть" Click="itemOpen_clicked">
+                <MenuItem Header="Открыть" Command="ApplicationCommands.Open" />
 
-                </MenuItem>
-                <MenuItem Header="Сохранить" Click="itemSave_clicked">
 
-                </MenuItem>
-                <MenuItem Header="Закрыть" Click="itemClose_clicked">
+                <MenuItem Header="Сохранить" Command="Save"/>
+
+
+                <MenuItem Header="Выход" Command="local:MyCommands.Exit" >
+                    <!--<MenuItem.CommandBindings>
+                        <CommandBinding Command="local:MyCommands.Exit" Executed="ExitExecuted"/>
+                    </MenuItem.CommandBindings>-->
 
                 </MenuItem>
             </MenuItem>

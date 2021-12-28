@@ -8,11 +8,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Input;
 
 namespace WpfTask3
 {
@@ -21,9 +21,7 @@ namespace WpfTask3
     /// </summary>
     public partial class MainWindow : Window
     {
-        int isBold = 0;
-        int isItalic = 0;
-        int isUnderline = 0;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -55,14 +53,12 @@ namespace WpfTask3
         {
             if (textBox != null)
             {
-                isBold += 1;
-                if (isBold == 1)
+                if (textBox.FontWeight != FontWeights.Bold)
                 {
                     textBox.FontWeight = FontWeights.Bold;
                 }
-                else if (isBold == 2)
+                else if (textBox.FontWeight == FontWeights.Bold)
                 {
-                    isBold = 0;
                     textBox.FontWeight = FontWeights.Normal;
                 }
             }
@@ -73,16 +69,27 @@ namespace WpfTask3
 
 //if (textBox.FontStyle == FontStyles.Italic)
         {
+            //if (textBox != null)
+            //{
+            //    isItalic += 1;
+            //    if (isItalic == 1)
+            //    {
+            //        textBox.FontStyle = FontStyles.Italic;
+            //    }
+            //    else if (isItalic == 2)
+            //    {
+            //        isItalic = 0;
+            //        textBox.FontStyle = FontStyles.Normal;
+            //    }
+            //}
             if (textBox != null)
             {
-                isItalic += 1;
-                if (isItalic == 1)
+                if (textBox.FontStyle != FontStyles.Italic)
                 {
                     textBox.FontStyle = FontStyles.Italic;
                 }
-                else if (isItalic == 2)
+                else if (textBox.FontStyle == FontStyles.Italic)
                 {
-                    isItalic = 0;
                     textBox.FontStyle = FontStyles.Normal;
                 }
             }
@@ -93,14 +100,12 @@ namespace WpfTask3
 
             if (textBox != null)
             {
-                isUnderline += 1;
-                if (isUnderline == 1)
+                if (textBox.TextDecorations != TextDecorations.Underline)
                 {
                     textBox.TextDecorations = TextDecorations.Underline;
                 }
-                else if (isUnderline == 2)
+                else if (textBox.TextDecorations == TextDecorations.Underline)
                 {
-                    isUnderline = 0;
                     textBox.TextDecorations = null;
                 }
             }
@@ -125,16 +130,28 @@ namespace WpfTask3
         private void ExitExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             Application.Current.Shutdown();
-
         }
 
         private void OpenExecute(object sender, ExecutedRoutedEventArgs e)
         {
+            if (textBox != null)
+            {
+                StreamReader sr = new StreamReader("document.txt");
+
+                textBox.Text = sr.ReadToEnd();
+                sr.Close();
+            }
             MessageBox.Show("Документ открыт");
         }
 
         private void SaveExecute(object sender, ExecutedRoutedEventArgs e)
         {
+            if (textBox != null)
+            {
+                StreamWriter sw = new StreamWriter("document.txt");
+                sw.Write(textBox.Text);
+                sw.Close();
+            }
             MessageBox.Show("Документ coxpaнен");
         }
     }
